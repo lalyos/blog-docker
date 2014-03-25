@@ -1,4 +1,4 @@
-This repo contains a Dockerfiel which helps you to deploy octopress based blogs
+This repo contains a Dockerfile which helps you to deploy octopress based blogs
 devops style. Guess what docker is involved ...
 
 Instead of deploying the correct version of rbenv/ruby/gem/bundler/rake/python
