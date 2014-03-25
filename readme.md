@@ -15,8 +15,11 @@ docker run -e "DEBUG=1" -e "KEY=$(cat ~/.ssh/id_rsa|base64)" -i sequenceiq/blog
 
 ## build the image
 
-Just use the `build` command which uses the `-t` tag parameter and the last attribute
-is the directory containing the `Dockerfile`
+> You don't need to build the image it as its on [docker.io](https://index.docker.io/u/sequenceiq/)
+
+But if you are hacking the Dockerfile, just use the `build` command which uses
+the `-t` tag parameter for the image name. and the last attribute is the
+directory containing the `Dockerfile`
 
 ```
 docker build -t sequenceiq/blog .
