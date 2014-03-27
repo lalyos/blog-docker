@@ -4,8 +4,8 @@
 
 [ -n "$DEBUG" ] && echo debug on ... && set -x
 
-:${COMMIT_NAME:=octopress}
-:${COMMIT_EMAIL:=cat@octopress.org}
+: ${COMMIT_NAME:=octopress}
+: ${COMMIT_EMAIL:=cat@octopress.org}
 
 # private github key comes from env variable KEY
 # docker run -e KEY=XXXX
