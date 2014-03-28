@@ -3,7 +3,7 @@
 if [ -n "$DEBUG" ];then
   echo debug on ...
   set -x
-  EXTRA_ENV=' -e "DEBUG=1" '
+  EXTRA_ENV="-e DEBUG=1"
 fi
 
 : ${KEY_DIR:=~/.ssh}
