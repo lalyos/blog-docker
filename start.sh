@@ -37,8 +37,7 @@ wrapper() {
   fi
 
   DOCKER_CMD="docker run -e KEY=$(encode_file $GH_KEY) $EXTRA_ENV -i sequenceiq/blog"
-  echo docker ...
-  # $DOCKER_CMD
+  $DOCKER_CMD
 }
 
 wrapper
