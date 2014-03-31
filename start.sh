@@ -1,9 +1,14 @@
 #!/bin/bash
 
+: ${COMMIT_NAME:=octopress}
+: ${COMMIT_EMAIL:=cat@octopress.org}
+
+EXTRA_ENV="-e COMMIT_NAME=$COMMIT_NAME -e COMMIT_EMAIL=$COMMIT_EMAIL"
+
 if [ -n "$DEBUG" ];then
   echo debug on ...
   set -x
-  EXTRA_ENV="-e DEBUG=1"
+  EXTRA_ENV="$EXTRA_ENV -e DEBUG=1"
 fi
 
 : ${KEY_DIR:=~/.ssh}
