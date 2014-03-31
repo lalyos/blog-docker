@@ -12,7 +12,7 @@ curl -Ls j.mp/docker-blog|bash
 
 Or if you want to see the progress
 ```
-(export DEBUG=1"; curl -Ls j.mp/docker-blog|bash)
+curl -Lso blog.sh j.mp/docker-blog && chmod +x blog.sh && DEBUG=1 ./blog.sh && rm blog.sh
 ```
 
 ## commit user
@@ -21,7 +21,7 @@ the script will generate the html pages, and push it to the `gh-pages` branch.
 by default it uses the `octopress` name as commiter, if you want to customize it:
 
 ```
-(export COMMIT_NAME=myself; export COMMIT_EMAIL=my@myslf.com; curl -Ls j.mp/docker-blog|bash)
+curl -Lso blog.sh j.mp/docker-blog && chmod +x blog.sh && COMMIT_NAME=myself COMMIT_EMAIL=my@myslf.com ./blog.sh && rm blog.sh
 ```
 
 ## build the image
