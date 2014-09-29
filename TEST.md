@@ -29,3 +29,7 @@ Successfully generated site: source -> public/blog
 2014/09/29 11:07:32 Serving files from public/blog/ at 0.0.0.0:8080
 ```
 You can start browsing the test blog at: http://192.168.59.103:8080/
+
+## Terminate the server
+
+simly press `CTRL-C`, it wil stop nd remove the docker container.
