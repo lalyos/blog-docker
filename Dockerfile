@@ -18,4 +18,5 @@ WORKDIR /tmp/blog
 RUN bundle install
 ADD test_blog.sh /
 
+EXPOSE 8080
 CMD ["/test_blog.sh"]
