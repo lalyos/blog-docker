@@ -13,7 +13,7 @@ your changes to the **test** brach.
 
 Then you can start a local blog server by:
 ```
-docker run -it --rm -p 8080:8080 sequenceiq/blog:test
+docker run -it --rm -p 8080:8080 sequenceiq/blog:test /test_blog.sh
 ```
 
 It will:
