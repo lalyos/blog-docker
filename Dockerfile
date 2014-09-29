@@ -19,4 +19,8 @@ RUN bundle install
 ADD test_blog.sh /
 
 EXPOSE 8080
-CMD ["/test_blog.sh"]
+
+ONBUILD COPY . /tmp/blog
+ONBUILD RUN rake generate
+
+CMD ["server", "-dir", "public/blog/", "-h", "0.0.0.0"]
