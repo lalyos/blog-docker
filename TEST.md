@@ -1,35 +1,48 @@
-Before you push your blog to the **master** branch, i should be tested.
+Before you push your blog to the **master** branch, it should be tested.
 Testing means:
 
 - generating the static files with jekyll
 - serving static pages with some *webserver*
 
-It's definitely not enough if it looks good on github, ot in your markdown editor.
+It's definitely not enough if it looks good on github, or in your markdown editor.
 
 ## Testing the blog
 
-This image aims to test the blog before publication. The trick is: first push
-your changes to the **test** brach.
+To locally test a new blog entry, follow these steps:
 
-Then you can start a local blog server by:
+- Checkout the [sequenceiq/blog](https://github.com/sequenceiq/blog) github repo.
+- Create a new post like `source/_posts/2014-08-31-my-new-blog.markdown`
+- Create and run a blog-test container:
+
 ```
-docker run -it --rm -p 8080:8080 sequenceiq/blog:test /test_blog.sh
+./blog-test.sh
+
+Options:
+  -d --dirty    don't stash uncommitted changed
 ```
 
 It will:
 
-- fetch the latest changes from git
-- git hard reset to **origin/test**
-- rake generate
-- serve the **public/blog** directory on port 8080
+- stash away uncommitted changes (unless -d is used)
+- `COPY` the workdir to a new *blog-test* Docker image, at `/tmp/blog`
+- `RUN rake generate` inside the container
+- start the new Docker image, which will serve the **public/blog** on http
+- stash back
+- Automatically open a browser pointing to: http://192.168.59.103:8080/
 
-Once You see something like this:
+
+## Changing local port
+
+In case your port `8080` is already occupied, you can change it:
 ```
-Successfully generated site: source -> public/blog
-2014/09/29 11:07:32 Serving files from public/blog/ at 0.0.0.0:8080
+export BLOG_PORT=9876
+./blog-test.sh
 ```
-You can start browsing the test blog at: http://192.168.59.103:8080/
 
 ## Terminate the server
 
-simly press `CTRL-C`, it wil stop nd remove the docker container.
+The blog server is started as a backround container. To clean up:
+
+```
+docker rm -f blog-test && docker rmi blog-test-image
+```
