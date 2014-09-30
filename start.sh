@@ -60,7 +60,7 @@ wrapper() {
     is_valid_github_key $GH_KEY || echo $GH_KEY is invalid fo github && exit 1
   fi
 
-  DOCKER_CMD="docker run -e KEY=$(encode_file $GH_KEY) $EXTRA_ENV -i sequenceiq/blog /deploy-github.sh"
+  DOCKER_CMD="docker run --rm -e KEY=$(encode_file $GH_KEY) $EXTRA_ENV -i sequenceiq/blog /deploy-github.sh"
   $DOCKER_CMD
 }
 
