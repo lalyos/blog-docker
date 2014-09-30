@@ -17,6 +17,7 @@ RUN git clone https://github.com/sequenceiq/blog.git /tmp/blog \
 WORKDIR /tmp/blog
 RUN bundle install
 ADD try-test-branch.sh /
+ADD deploy-github.sh /
 
 EXPOSE 8080
 
