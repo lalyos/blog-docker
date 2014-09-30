@@ -1,10 +1,10 @@
-Before you push your blog to the **master** branch, i should be tested.
+Before you push your blog to the **master** branch, it should be tested.
 Testing means:
 
 - generating the static files with jekyll
 - serving static pages with some *webserver*
 
-It's definitely not enough if it looks good on github, ot in your markdown editor.
+It's definitely not enough if it looks good on github, or in your markdown editor.
 
 ## Testing the blog
 
