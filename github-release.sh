@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-: ${KEY:? a valid base64 encoded github ssh key required }
+: ${GITHUB_KEY:? a valid base64 encoded github ssh key required }
 : ${GITHUB_TOKEN:? a valid GITHUB oauth2 token required with repo scope}
 
 : ${COMMIT_NAME:=octopress}
@@ -21,7 +21,7 @@ github_setup() {
 
   mkdir -p /root/.ssh
   chmod 700 /root/.ssh
-  echo $KEY|base64 -d> /root/.ssh/id_rsa
+  echo $GITHUB_KEY|base64 -d> /root/.ssh/id_rsa
   chmod 600 /root/.ssh/id_rsa
   ssh -T -o StrictHostKeyChecking=no  git@github.com || true
 
