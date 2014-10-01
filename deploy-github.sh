@@ -1,14 +1,12 @@
 #!/bin/bash
 
-: ${KEY?'missing github private key do deploy docker run -e KEY=XXXX'}
+: ${GITHUB_KEY:? base64 encoded ssh key for github push}
 
 [ -n "$DEBUG" ] && echo debug on ... && set -x
 
 : ${COMMIT_NAME:=octopress}
 : ${COMMIT_EMAIL:=cat@octopress.org}
 
-# private github key comes from env variable KEY
-# docker run -e KEY=XXXX
 mkdir -p /root/.ssh
 chmod 700 /root/.ssh
 
