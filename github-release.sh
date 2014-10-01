@@ -90,7 +90,7 @@ github_release() {
 githubcurl repos/${SOURCE_REPO}/releases -X POST -d @- <<EOF
 {
   "tag_name": "$NEW_RELEASE",
-  "target_commitish": "master"
+  "target_commitish": "gh-pages"
 }
 EOF
 }
