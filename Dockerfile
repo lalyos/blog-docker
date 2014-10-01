@@ -20,7 +20,7 @@ RUN git clone https://github.com/${SOURCE_REPO}.git /tmp/blog \
     && cd /tmp/blog && git checkout ${SOURCE_BRANCH}
 
 ENV BLOG_DIR /tmp/blog
-WORKDIR $BLOG_DIR
+WORKDIR /tmp/blog
 RUN cd $BLOG_DIR && bundle install
 
 COPY try-test-branch.sh /
