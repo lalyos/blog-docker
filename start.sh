@@ -9,6 +9,7 @@ This is a blog DEPLOYER one-liner:
 
 ENV VARIABLES:
 
+  GITHUB_TOKEN     oauth2 token with repo scope. https://github.com/settings/tokens/new
   COMMIT_NAME      the username for the GH-PAGES commit (default: octopress)
   COMMIT_EMAIL     the email for the GH-PAGES commit (default: cat@octopress.org)
   KEY_DIR          where to look for valid Github ssh keys (dafault: ~/.ssh)
@@ -18,6 +19,7 @@ ENV VARIABLES:
 ============================================
 USAGE
 
+: ${GITHUB_TOKEN:? a valid GITHUB oauth2 token required with repo scope}
 
 : ${COMMIT_NAME:=octopress}
 : ${COMMIT_EMAIL:=cat@octopress.org}
@@ -60,8 +62,11 @@ wrapper() {
     is_valid_github_key $GH_KEY || echo $GH_KEY is invalid fo github && exit 1
   fi
 
-  DOCKER_CMD="docker run --rm -e KEY=$(encode_file $GH_KEY) $EXTRA_ENV -i sequenceiq/blog /deploy-github.sh"
-  $DOCKER_CMD
+  docker run \
+    -e GIT_TAG=origin/source \
+    -e GITHUB_KEY=$(encode_file $GH_KEY) \
+    -e GITHUB_TOKEN=$GITHUB_TOKEN \
+    sequenceiq/blog /github-release.sh
 }
 
 wrapper
