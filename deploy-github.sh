@@ -14,7 +14,7 @@ chmod 700 /root/.ssh
 
 # switch off debug to hide private key
 set +x
-echo $KEY|base64 -d> /root/.ssh/id_rsa
+echo ${GITHUB_KEY}|base64 -d> /root/.ssh/id_rsa
 [ -n "$DEBUG" ] && echo debug on ... && set -x
 
 chmod 600 /root/.ssh/id_rsa
