@@ -68,7 +68,7 @@ push_tar_to_gh_branch() {
   cd /tmp/gh-pages
 
   git checkout gh-pages
-  rm -rf *
+  rm -rf blog
   tar xf /tmp/gh-pages.tar
 
   github_calc_new_release
