@@ -6,12 +6,28 @@
 : ${SOURCE_REPO:=sequenceiq/blog-test}
 : ${TARGET_REPO:=sequenceiq/blog}
 
+: ${COMMIT_NAME:=octopress}
+: ${COMMIT_EMAIL:=cat@octopress.org}
+
 : ${TEMP_REL_DIR:=/tmp/release}
 
 [ $TRACE -gt 0 ] && set -x
 
 debug() {
   [ $DEBUG -gt 0 ] && echo "[DEBUG] $*" 1>&2
+}
+
+github_setup() {
+  debug setting up github keys/config ...
+
+  mkdir -p /root/.ssh
+  chmod 700 /root/.ssh
+  echo $GITHUB_KEY|base64 -d> /root/.ssh/id_rsa
+  chmod 600 /root/.ssh/id_rsa
+  ssh -T -o StrictHostKeyChecking=no  git@github.com || true
+
+  git config --global user.name "$COMMIT_NAME"
+  git config --global user.email "$COMMIT_EMAIL"
 }
 
 get_latest_release_number() {
@@ -46,3 +62,6 @@ push_tar_to_gh_branch() {
   git push origin gh-pages --tags
   debug tag: $RELEASE pushed to github
 }
+
+github_setup
+push_tar_to_gh_branch
