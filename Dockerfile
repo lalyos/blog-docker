@@ -25,6 +25,7 @@ RUN bundle install
 
 COPY try-test-branch.sh /
 COPY github-release.sh /
+COPY deploy_live.sh /
 
 EXPOSE 8080
 
