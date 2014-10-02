@@ -49,8 +49,13 @@ push_tar_to_gh_branch() {
   cd ${TEMP_REL_DIR}
 
   git checkout gh-pages
+  rm -rf *
   download_release
 
+  debug restore CNAME
+  git reset HEAD CNAME
+  git checkout -- CNAME
+  
   debug adding new files and modifications ...
   git add .
 
