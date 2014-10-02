@@ -21,7 +21,7 @@ RUN git clone https://github.com/${SOURCE_REPO}.git /tmp/blog \
 
 ENV BLOG_DIR /tmp/blog
 WORKDIR /tmp/blog
-RUN cd $BLOG_DIR && bundle install
+RUN bundle install
 
 COPY try-test-branch.sh /
 COPY github-release.sh /
