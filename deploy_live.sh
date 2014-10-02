@@ -41,7 +41,7 @@ download_release() {
   debug downloading tar RELEASE=$RELEASE
 
   curl -L https://api.github.com/repos/${SOURCE_REPO}/tarball/${RELEASE} \
-    | tar xz
+    | tar xz --strip=1
 }
 
 push_tar_to_gh_branch() {
