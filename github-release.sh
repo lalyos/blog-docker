@@ -74,8 +74,14 @@ push_tar_to_gh_branch() {
 
   github_calc_new_release
 cat > version.html<<EOF
-rel:$NEW_RELEASE
-git:$GIT_HEAD
+<ul>
+<li><a href="https://github.com/sequenceiq/blog-test/releases/tag/$NEW_RELEASE">$NEW_RELEASE</a>
+<li><a href="https://github.com/sequenceiq/blog-test/commit/$GIT_HEAD">$GIT_HEAD</a>
+</ul>
+EOF
+
+cat > version.txt<<EOF
+$NEW_RELEASE
 EOF
 
   debug adding new files and modifications ...
