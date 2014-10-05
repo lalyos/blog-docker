@@ -1,4 +1,4 @@
-Before you push your blog to the **master** branch, it should be tested.
+Before you push your blog to the **source** branch, it should be tested.
 Testing means:
 
 - generating the static files with jekyll
@@ -10,7 +10,7 @@ It's definitely not enough if it looks good on github, or in your markdown edito
 
 To locally test a new blog entry, follow these steps:
 
-- Checkout the [sequenceiq/blog](https://github.com/sequenceiq/blog) github repo.
+- Checkout the [sequenceiq/blog-test](https://github.com/sequenceiq/blog-test) github repo.
 - Create a new post like `source/_posts/2014-08-31-my-new-blog.markdown`
 - Create and run a blog-test container:
 
