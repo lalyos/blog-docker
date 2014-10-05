@@ -88,6 +88,8 @@ push_tar_to_gh_branch() {
 
 github_release() {
   debug creting new release: $NEW_RELEASE on github
+  debug give 5 sec time to github API to realise the new tag ...
+  sleep 5
 githubcurl repos/${SOURCE_REPO}/releases -X POST -d @- <<EOF
 {
   "tag_name": "$NEW_RELEASE",
