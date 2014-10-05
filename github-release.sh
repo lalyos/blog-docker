@@ -56,6 +56,7 @@ git_reset_if_needed() {
 
 create_static_site_tar() {
   git_reset_if_needed
+  GIT_HEAD=$(git rev-parse HEAD)
   debug generating static site as a tar file ...
   github_setup
   cd $BLOG_DIR
@@ -72,7 +73,10 @@ push_tar_to_gh_branch() {
   tar xf /tmp/gh-pages.tar
 
   github_calc_new_release
-  echo $NEW_RELEASE > version.html
+cat > version.html<<EOF
+rel:$NEW_RELEASE
+git:$GIT_HEAD
+EOF
 
   debug adding new files and modifications ...
   git add .
@@ -90,10 +94,20 @@ github_release() {
   debug creting new release: $NEW_RELEASE on github
   debug give 5 sec time to github API to realise the new tag ...
   sleep 5
+  echo this will be posted to GITHUB API:
+  cat <<EOF
+{
+  "tag_name": "$NEW_RELEASE",
+  "target_commitish": "gh-pages",
+  "body": "static pages generated from $GIT_HEAD"
+}
+EOF
+
 githubcurl repos/${SOURCE_REPO}/releases -X POST -d @- <<EOF
 {
   "tag_name": "$NEW_RELEASE",
-  "target_commitish": "gh-pages"
+  "target_commitish": "gh-pages",
+  "body": "static pages generated from $GIT_HEAD"
 }
 EOF
 }
